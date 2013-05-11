@@ -82,7 +82,6 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="smart-table-filter.js"></script>
     <script>
-      console.log('hello!');
       $(function(){
         $('table.smart-filter-example').smartTableFilter({
           'saveInCookies': true,
@@ -101,7 +100,15 @@
               return ((curDate >= start) && (curDate <= finish));
             },
             'statusFilter': function(selectedFilterValue, cell) {
-              return true;
+              if (!selectedFilterValue) { return true; } // blank means the filter is off
+              var cellText = $.trim(cell.text());
+              var statuses = selectedFilterValue.split('|');
+              for (var i=0; i<statuses.length; i++) {
+                if ($.trim(statuses[i]) == cellText) {
+                  return true;
+                }
+              }
+              return false;
             }
           }
         });
