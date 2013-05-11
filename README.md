@@ -23,7 +23,7 @@ This will work on any basic table. The filter inputs should be placed in the hea
       </th>
     </tr>
   </tfoot>
-</table
+</table>
 ```
 
 ## Basics
