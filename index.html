@@ -43,10 +43,10 @@
       <tfoot>
         <tr>
           <th>
-            <input data-filter-type='stringCaseInsensitive' type='text' />
+            <input id='IdFilter' data-filter-type='stringCaseInsensitive' type='text' />
           </th>
           <th>
-            <select data-filter-type='dateRangeFilter'>
+            <select id='DateCreatedFilter' data-filter-type='dateRange'>
               <option value=''>All</option>
               <option value='1336694400-1368316800'>Last 12 Months</option>
               <option value='1352592000-1368316800'>Last 6 Months</option>
@@ -58,7 +58,7 @@
             </select>
           </th>
           <th>
-            <select data-filter-type='statusFilter'>
+            <select id='StatusFilter' data-filter-type='stringBoolean'>
               <option value=''>All</option>
               <option value='Active|New'>Open</option>
               <option value='Active'>Active</option>
@@ -67,50 +67,19 @@
             </select>
           </th>
           <th>
-            <input type='text' data-filter-type='stringCaseInsensitive' />
-            <!-- <select data-filter-type='stringCaseSensitive'> -->
-            <!--   <option value=''>All</option> -->
-            <!--   <option value='John Doe'>John Doe</option> -->
-            <!--   <option value='Adam Albrecht'>Adam Albrecht</option> -->
-            <!--   <option value='Jane Smith'>Jane Smith</option> -->
-            <!--   <option value='Ron Swanson'>Ron Swanson</option> -->
-            <!-- </select> -->
+            <input id='Userfilter' type='text' data-filter-type='stringCaseInsensitive' />
           </th>
         </tr>
       </tfoot>
     </table>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="smart-table-filter.js"></script>
+    <script src="jquery.smart-table-filter.js"></script>
     <script>
       $(function(){
         $('table.smart-filter-example').smartTableFilter({
-          'saveInCookies': true,
-          'cookiePrefix': '1-',
-          'customFilters': {
-            'dateRangeFilter': function(selectedFilterValue, cell) {
-              if (!selectedFilterValue) {
-                return true;
-              }
-              else if (!cell || !cell.text()) {
-                return false;
-              }
-              var start = parseInt(selectedFilterValue.split("-")[0]);
-              var finish = parseInt(selectedFilterValue.split("-")[1]);
-              var curDate = Date.parse(cell.text()) / 1000;
-              return ((curDate >= start) && (curDate <= finish));
-            },
-            'statusFilter': function(selectedFilterValue, cell) {
-              if (!selectedFilterValue) { return true; } // blank means the filter is off
-              var cellText = $.trim(cell.text());
-              var statuses = selectedFilterValue.split('|');
-              for (var i=0; i<statuses.length; i++) {
-                if ($.trim(statuses[i]) == cellText) {
-                  return true;
-                }
-              }
-              return false;
-            }
-          }
+          'persistToCookies': true,
+          'cookiePrefix': '1-sample-',
+          'customFilters': {}
         });
       });
     </script>
