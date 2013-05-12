@@ -13,7 +13,7 @@ This will work on any basic table. The filter inputs should be placed in the hea
         <input data-filter-type='stringCaseInsensitive' type='text' />
       </th>
       <th>
-        <select data-filter-type='randomFilter'>
+        <select data-filter-type='stringBoolean'>
           <option value=''>All</option>
           <option value='Active|New'>Open</option>
           <option value='Active'>Active</option>
@@ -45,7 +45,7 @@ There are 4 built-in filtering functions:
 
 ## Custom Filter Functions
 
-You can call custom filtering functions if you need logic more complex than simply matching strings. For example, in the HTML markup above, we'd like to have a 'randomFilter' function that hides/shows rows at random. To create it, we simply pass it in as an option. The function should take 2 arguments: the value selected in the filter input and the cell that's being tested against the filter. Return true if the cell passes the filter, false if it doesn't.
+You can call custom filtering functions if you need logic more complex than simply matching strings. For example, perhaps we'd like to have a 'randomFilter' function that hides/shows rows at random. To create it, we simply pass it in as an option. The function should take 2 arguments: the value selected in the filter input and the cell that's being tested against the filter. Return true if the cell passes the filter, false if it doesn't.
 
 ```javascript
 $('table.smart-filter-example').smartTableFilter({
