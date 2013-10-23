@@ -58,6 +58,7 @@
     settings = $.extend({
       'persistToCookies': false,
       'cookiePrefix': '',
+      'onFiltersApplied' : null,
       'customFilters': {}
     }, options);
 
@@ -101,6 +102,9 @@
       });
       if (settings['persistToCookies'] == true) {
         saveFiltersToCookies();
+      }
+      if (settings['onFiltersApplied']) {
+        settings['onFiltersApplied']($(table).find('[data-filter-type]'))
       }
     };
 
